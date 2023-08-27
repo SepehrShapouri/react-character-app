@@ -5,6 +5,10 @@
   --sec-text-color:#cbd5e1;
   --nav-color:#475569
 }
+@font-face {
+  font-family:myFirstFont;
+  src: url("/Users/sepiboi/Desktop/FRONTEND WEB DEV/REACT_UPDATE/04-react-movie-app/src/fonts/Roboto/Roboto-BlackItalic.ttf");
+}
 *{
   margin: 0;
   padding: 0;
@@ -53,7 +57,7 @@ border-radius: 100%;
 }
 .app-header__logo{
   color:#2dd4bf ;
-  font-family: "montserrat" , sans-serif;
+  font-family: "myFirstFont";
   font-size: 0.8rem;
   font-weight: bold;
 }
