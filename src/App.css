@@ -126,3 +126,27 @@
   border-radius: 15px;
   text-align: center;
 }
+/* end of character card */
+
+.character-card-sum{
+  width: 38%;
+  background-color: var(--sec-bg-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0.8rem;
+  color: var(--text-color);
+  align-items: center;
+  border-radius: 10px;
+  height: 76px;
+}
+.character-sum__image{
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+.eye{
+  color: red;
+  width: 20px;
+  height: 20px;
+}
