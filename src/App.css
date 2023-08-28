@@ -79,7 +79,7 @@
   background-color: var(--sec-bg-color);
   color: var(--text-color);
   display: flex;
-  width: 60%;
+  height: 200px;
   border-radius: 10px;
 }
 .character-card__image {
@@ -105,11 +105,16 @@
   font-size: 14px;
 }
 .life-status {
-  background-color: red;
   width: 10px;
   height: 10px;
   border-radius: 100%;
   margin-right: 5px;
+}
+.dead{
+  background-color: red;
+}
+.alive{
+  background-color: green;
 }
 .character-lastknown p {
   color: var(--sec-text-color);
@@ -159,7 +164,6 @@
 
 .episode-list__component {
   background-color: var(--sec-bg-color);
-  width: 60%;
   padding: 1rem;
   border-radius: 10px;
   align-self: flex-end;
@@ -196,13 +200,16 @@
 }
 .main {
   display: flex;
-  justify-content: space-between;
   margin-top: 1rem;
+  justify-content: space-between;
 }
 .character-summary_list {
   width: 38%;
   display: flex;
   flex-direction: column;
+}
+.character-detail{
+  width: 60%;
 }
 @media screen and (max-width: 600px) {
   .main {

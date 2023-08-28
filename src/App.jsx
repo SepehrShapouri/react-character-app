@@ -3,18 +3,22 @@ import "./App.css"
 import CharacterCard from "./components/CharacterCard";
 import CharacterCardSum from "./components/CharacterCardSum";
 import EpisodeList from "./components/EpisodeList";
+import characters from "./data/characters";
 const App = () => {
   return ( 
     <div className="wrapper">
       <Navbar/>
       <div className="main">
         <div className="character-summary_list">
-          <CharacterCardSum/>
-          <CharacterCardSum/>
+          {characters.map((item)=>{
+            return <CharacterCardSum item={item}/>
+          })}
         </div>
-        <CharacterCard/>
-      </div>
+      <div className="character-detail">
+      <CharacterCard/>
       <EpisodeList/>
+      </div>
+      </div>
     </div>
    );
 }
