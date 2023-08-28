@@ -21,7 +21,8 @@
   width: 100vw;
   height: 100vh;
   background-color: var(--bg-color);
-  padding: 1rem;
+  padding: 1rem;display: flex;
+  flex-direction: column;
 }
 .app-header {
   background-color: var(--nav-color);
@@ -128,7 +129,7 @@
 }
 /* end of character card */
 
-.character-card-sum{
+.character-card-sum {
   width: 38%;
   background-color: var(--sec-bg-color);
   display: flex;
@@ -140,13 +141,59 @@
   border-radius: 10px;
   height: 76px;
 }
-.character-sum__image{
+.character-sum__image {
   width: 50px;
   height: 50px;
   border-radius: 10px;
 }
-.eye{
+.eye {
   color: red;
   width: 20px;
   height: 20px;
+}
+/* end of character summary */
+
+.episode-list__component {
+  background-color: var(--sec-bg-color);
+  width: 60%;
+  padding: 1rem;
+  border-radius: 10px;
+  align-self: flex-end;
+  margin-top: 1rem;
+}
+.list-title {
+  color: var(--sec-text-color);
+  font-weight: bold;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0.6;
+}
+.episode-sort__icon {
+  width: 20px;
+}
+.episode-list {
+  margin-top: 1rem;
+}
+/* end of episode list */
+.episode {
+  display: flex;
+  color: var(--text-color);
+  font-size: 0.8rem;
+  justify-content: space-between;
+  font-weight: bold;
+  align-items: center;
+}
+.episode-date {
+  background-color: var(--nav-color);
+  padding: 5px;
+  font-size: 0.6rem;
+  border-radius: 15px;
+}
+.main{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.character-sum__list{
 }
