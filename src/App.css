@@ -21,7 +21,8 @@
   width: 100vw;
   height: 100vh;
   background-color: var(--bg-color);
-  padding: 1rem;display: flex;
+  padding: 1rem;
+  display: flex;
   flex-direction: column;
 }
 .app-header {
@@ -130,7 +131,7 @@
 /* end of character card */
 
 .character-card-sum {
-  width: 38%;
+  /* width: 38%; */
   background-color: var(--sec-bg-color);
   display: flex;
   flex-direction: row;
@@ -140,6 +141,9 @@
   align-items: center;
   border-radius: 10px;
   height: 76px;
+}
+.character-card-sum:not(:first-child) {
+  margin-top: 1rem;
 }
 .character-sum__image {
   width: 50px;
@@ -190,10 +194,30 @@
   font-size: 0.6rem;
   border-radius: 15px;
 }
-.main{
+.main {
   display: flex;
   justify-content: space-between;
   margin-top: 1rem;
 }
-.character-sum__list{
+.character-summary_list {
+  width: 38%;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 600px) {
+  .main {
+    flex-direction: column;
+  }
+  .character-card {
+    width: 100%;
+  }
+  .episode-list__component {
+    width: 100%;
+  }
+  .character-summary_list {
+    width: 100%;
+  }
+  .character-card-sum:not(:first-child) {
+    margin-bottom: 1rem;
+  }
 }

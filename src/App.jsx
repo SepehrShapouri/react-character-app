@@ -8,7 +8,10 @@ const App = () => {
     <div className="wrapper">
       <Navbar/>
       <div className="main">
+        <div className="character-summary_list">
           <CharacterCardSum/>
+          <CharacterCardSum/>
+        </div>
         <CharacterCard/>
       </div>
       <EpisodeList/>
