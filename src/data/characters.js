@@ -28,7 +28,7 @@ const characters = [
         image: "https://rickandmortyapi.com/api/character/avatar/3.jpeg",
     },
     {
-        id: 3,
+        id: 4,
         name: "Beth Smith",
         status: "Dead",
         species: "Human",
