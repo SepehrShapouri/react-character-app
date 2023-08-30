@@ -1,6 +1,6 @@
 import { ArrowDownCircleIcon } from "@heroicons/react/24/outline";
 import Episode from "./Episode";
-const EpisodeList = () => {
+const EpisodeList = ({ episodes }) => {
   return (
     <div className="episode-list__component">
       <div className="list-title">
@@ -9,9 +9,11 @@ const EpisodeList = () => {
           <ArrowDownCircleIcon className="episode-sort__icon" />
         </span>
       </div>
-      <div className="episode-list">
-        <Episode />
-      </div>
+      <ul className="episode-list">
+        {episodes.map((item,index) => (
+          <Episode episode={item} index={index}/>
+        ))}
+      </ul>
     </div>
   );
 };

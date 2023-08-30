@@ -1,11 +1,11 @@
-const Episode = () => {
+const Episode = ({episode,index}) => {
   return (
-    <div className="episode">
-      <p className="epsiode-detail">
-        00 - S1E1 : <span>Pilot</span>
+    <li className="episode">
+      <p className="episode-detail">
+        {(String(index + 1).padStart(2,"0"))} {episode.episode} : <strong>{episode.name}</strong>
       </p>
-      <aside className="episode-date">December 2,2013</aside>
-    </div>
+      <aside className="episode-date">{episode.air_date}</aside>
+    </li>
   );
 };
 

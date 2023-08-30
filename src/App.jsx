@@ -1,26 +1,21 @@
 import Navbar from "./components/Navbar";
-import "./App.css"
+import "./App.css";
 import CharacterCard from "./components/CharacterCard";
 import CharacterCardSum from "./components/CharacterCardSum";
 import EpisodeList from "./components/EpisodeList";
-import characters from "./data/characters";
+import { character, episodes, allCharacters } from "./data/characters";
+import CharacterDetail from "./components/CharacterDetail";
+import CharacterList from "./components/CharacterList";
 const App = () => {
-  return ( 
+  return (
     <div className="wrapper">
-      <Navbar/>
+      <Navbar />
       <div className="main">
-        <div className="character-summary_list">
-          {characters.map((item)=>{
-            return <CharacterCardSum item={item}/>
-          })}
-        </div>
-      <div className="character-detail">
-      <CharacterCard/>
-      <EpisodeList/>
-      </div>
+        <CharacterList allCharacters={allCharacters} />
+        <CharacterDetail />
       </div>
     </div>
-   );
-}
- 
+  );
+};
+
 export default App;

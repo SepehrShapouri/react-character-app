@@ -126,9 +126,10 @@
 }
 .main-btn {
   all: unset;
+  font-size: 0.8rem;
   color: var(--text-color);
   background-color: #64748b;
-  width: 50%;
+  width: 40%;
   padding: 0.7rem;
   border-radius: 15px;
   text-align: center;
@@ -191,6 +192,7 @@
   justify-content: space-between;
   font-weight: bold;
   align-items: center;
+  margin-top: 10px;
 }
 .episode-date {
   background-color: var(--nav-color);
@@ -228,4 +230,10 @@
   .character-card-sum:not(:first-child) {
     margin-bottom: 1rem;
   }
+  .character-detail{
+    width:  100%;
+  }
+}
+.episode-detail{
+  font-weight: 300;
 }
