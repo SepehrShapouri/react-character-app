@@ -11,7 +11,7 @@ const EpisodeList = ({ episodes }) => {
       </div>
       <ul className="episode-list">
         {episodes.map((item,index) => (
-          <Episode episode={item} index={index}/>
+          <Episode episode={item} key={item.id} index={index}/>
         ))}
       </ul>
     </div>

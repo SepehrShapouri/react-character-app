@@ -1,8 +1,9 @@
+import { useState } from "react";
 import CharacterCardSum from "./CharacterCardSum";
-const CharacterList = ({allCharacters}) => {
+const CharacterList = ({characters}) => {
     return ( 
         <div className="character-summary_list">
-        {allCharacters.map((item)=>{
+        {characters.map((item)=>{
           return <CharacterCardSum key={item.id} item={item}/>
         })}
       </div>

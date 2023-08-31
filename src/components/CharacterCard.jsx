@@ -1,5 +1,4 @@
-
-const CharacterCard = ({character}) => {
+const CharacterCard = ({ character }) => {
   return (
     <div className="character-card">
       <img
@@ -9,9 +8,11 @@ const CharacterCard = ({character}) => {
       />
       <div className="character-card__detail">
         <header className="character-card__detail-header">
-          <h3 className="detail-header__title">{character.gender =="Male" ? "🙎🏽‍♂️" : "🙎🏻‍♀️"}&nbsp;{character.name}</h3>
+          <h3 className="detail-header__title">
+            {character.gender == "Male" ? "🙎🏽‍♂️" : "🙎🏻‍♀️"}&nbsp;{character.name}
+          </h3>
           <span className="character-detail__status">
-          <span className={`life-status ${character.status === "Alive" ? "alive" : "dead"}`}></span>{character.status}&nbsp; - &nbsp;
+            <Status character={character}/>
             <p className="character-type">{character.species}</p>
           </span>
         </header>
@@ -21,10 +22,28 @@ const CharacterCard = ({character}) => {
             <h4>{character.location.name}</h4>
           </aside>
         </footer>
-        <button className="main-btn">Add to Favorite</button>
+        <DisplayBtn />
       </div>
     </div>
   );
 };
 
 export default CharacterCard;
+
+function DisplayBtn() {
+  return <button className="main-btn">Add to Favorite</button>;
+}
+
+export function Status({ character }) {
+  return (
+    <>
+      {" "}
+      <span
+        className={`life-status ${
+          character.status === "Alive" ? "alive" : "dead"
+        }`}
+      ></span>
+      {character.status}&nbsp; - &nbsp;
+    </>
+  );
+}
