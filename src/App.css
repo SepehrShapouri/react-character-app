@@ -18,8 +18,7 @@
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 .wrapper {
-  width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   background-color: var(--bg-color);
   padding: 1rem;
   display: flex;
@@ -130,9 +129,10 @@
   color: var(--text-color);
   background-color: #64748b;
   width: 40%;
-  padding: 0.7rem;
+  padding: 0 0.7rem;
   border-radius: 15px;
   text-align: center;
+  height: 36px;
 }
 /* end of character card */
 
@@ -147,6 +147,7 @@
   align-items: center;
   border-radius: 10px;
   height: 76px;
+  transition: all 0.24s ease-in;
 }
 .character-card-sum:not(:first-child) {
   margin-top: 1rem;
@@ -160,6 +161,10 @@
   color: red;
   width: 20px;
   height: 20px;
+  cursor: pointer;
+}
+.character-card-sum:hover{
+background-color: #123349;
 }
 /* end of character summary */
 
@@ -234,6 +239,18 @@
     width:  100%;
   }
 }
+@media screen and (max-width:900px){
+  .character-sum__detail{
+    font-size: 0.8rem;
+  }
+}
+
 .episode-detail{
   font-weight: 300;
+}
+.character-sum__detail{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
