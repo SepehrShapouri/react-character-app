@@ -8,6 +8,7 @@ import CircularIndeterminate from "./components/Loader";
 const App = () => {
   const [characters, setCharacters] = useState(allCharacters);
   const [isLoading, setIsLoading] = useState(false);
+  const [activeCharacter, setActiveCharacter] = useState(characters[0]);
   useEffect(() => {
     async function fetchData() {
       setIsLoading(true);
@@ -18,12 +19,22 @@ const App = () => {
     }
     fetchData();
   }, []);
+  const showHandler = (id) => {
+    const activeCharacter = characters.filter((c) => {
+      return c.id == id;
+    });
+    setActiveCharacter(activeCharacter[0]);
+  };
   return (
     <div className="wrapper">
       <Navbar numOfResult={characters.length} />
       <Main>
-        <CharacterList characters={characters} isLoading={isLoading} />
-        <CharacterDetail />
+        <CharacterList
+          onShowCharacter={showHandler}
+          characters={characters}
+          isLoading={isLoading}
+        />
+        <CharacterDetail character={activeCharacter} />
       </Main>
     </div>
   );

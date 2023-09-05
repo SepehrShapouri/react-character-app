@@ -1,7 +1,7 @@
 import { EyeIcon } from "@heroicons/react/24/outline";
 import { Status } from "./CharacterCard";
 
-const CharacterCardSum = ({ item }) => {
+const CharacterCardSum = ({ item ,onShowCharacter}) => {
   return (
     <div className="character-card-sum">
       <img src={item.image} alt="" className="character-sum__image" />
@@ -14,7 +14,7 @@ const CharacterCardSum = ({ item }) => {
           <p className="character-type">{item.species}</p>
         </span>
       </div>
-      <EyeIcon className="eye" />
+      <EyeIcon className="eye" onClick={()=>onShowCharacter(item.id)}/>
     </div>
   );
 };

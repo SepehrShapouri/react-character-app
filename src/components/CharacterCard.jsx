@@ -2,7 +2,7 @@ const CharacterCard = ({ character }) => {
   return (
     <div className="character-card">
       <img
-        src="src/images/Rick_Sanchez.webp"
+        src={character.image}
         alt=""
         className="character-card__image"
       />
