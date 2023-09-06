@@ -27,7 +27,7 @@ const App = () => {
   };
   return (
     <div className="wrapper">
-      <Navbar numOfResult={characters.length} />
+      <Navbar numOfResult={characters.length}/>
       <Main>
         <CharacterList
           onShowCharacter={showHandler}
