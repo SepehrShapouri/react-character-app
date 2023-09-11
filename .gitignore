@@ -25,4 +25,3 @@ dist-ssr
 *.md
 *.cjs
 vite.config.js
-.next
