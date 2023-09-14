@@ -6,6 +6,7 @@ import CharacterDetail from "./components/CharacterDetail";
 import CharacterList from "./components/CharacterList";
 import CircularIndeterminate from "./components/Loader";
 import { Toaster, toast } from "react-hot-toast";
+import axios from "axios";
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -14,13 +15,12 @@ const App = () => {
     async function fetchData() {
       try {
         setIsLoading(true);
-        const res = await fetch("https://rickandmortyapi.com/api/character");
-        if (!res.ok) throw new Error("something went wrong!");
-        console.log(res);
-        const data = await res.json();
+        const { data } = await axios.get(
+          "https://rickandmortyapi.com/api/charactefr"
+        );
         setCharacters(data.results);
       } catch (error) {
-        toast.error(error.message);
+        toast.error(error.response.data.error);
       } finally {
         setIsLoading(false);
       }
@@ -35,13 +35,11 @@ const App = () => {
   };
   // useEffect(() => {
   //   setIsLoading(true);
-  //   fetch("https://rickandmortyapi.com/api/characterd")
-  //   .then((res)=>{
-  //     if(!res.ok) throw new Error("something went wrong!!")
-  //     return res.json()
+  //   axios.get("https://rickandmortyapi.com/api/characterd")
+  //   .then(({data})=>{
+  //     setCharacters(data.results)
   //   })
-  //   .then((data)=> setCharacters(data.results))
-  //   .catch((err)=>toast.error(err.message))
+  //   .catch((err)=>toast.error(err.response.data.error))
   //   .finally(()=> setIsLoading(false))
   // }, []);
   return (
