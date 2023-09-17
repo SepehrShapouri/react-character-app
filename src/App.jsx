@@ -10,7 +10,7 @@ import axios from "axios";
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [activeCharacter, setActiveCharacter] = useState(character);
+  const [selectedId,setSelectedId] = useState()
   const [query,setQuery] = useState("")
   useEffect(() => {
     async function fetchData() {
@@ -32,11 +32,8 @@ const App = () => {
     }
     fetchData();
   }, [query]);
-  const showHandler = (id) => {
-    const activeCharacter = characters.filter((c) => {
-      return c.id == id;
-    });
-    setActiveCharacter(activeCharacter[0]);
+  const onShowCharacter = (id) => {
+    setSelectedId(prev => prev === id ? null : id)
   };
   // useEffect(() => {
   //   setIsLoading(true);
@@ -56,11 +53,12 @@ const App = () => {
         </Navbar>
       <Main>
         <CharacterList
-          onShowCharacter={showHandler}
+        selectedId={selectedId}
+          onShowCharacter={onShowCharacter}
           characters={characters}
           isLoading={isLoading}
         />
-        <CharacterDetail character={activeCharacter} />
+        <CharacterDetail selectedId={selectedId} />
       </Main>
     </div>
   );

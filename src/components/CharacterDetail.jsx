@@ -1,11 +1,10 @@
 import CharacterCard from "./CharacterCard";
 import EpisodeList from "./EpisodeList";
 import { character, episodes } from "../data/characters";
-const CharacterDetail = ({character}) => {
+const CharacterDetail = ({selectedId}) => {
   return (
     <div className="character-detail">
-    <CharacterCard character={character}/>
-    <EpisodeList episodes={episodes}/>
+    <CharacterCard selectedId={selectedId}/>
     </div>
   );
 };
