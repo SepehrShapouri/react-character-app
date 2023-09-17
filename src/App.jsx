@@ -11,6 +11,7 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedId,setSelectedId] = useState()
+  const [favorites,setFavorites] = useState([])
   const [query,setQuery] = useState("")
   useEffect(() => {
     async function fetchData() {
@@ -35,6 +36,9 @@ const App = () => {
   const onShowCharacter = (id) => {
     setSelectedId(prev => prev === id ? null : id)
   };
+  const addToFavorite = (id)=>{
+    console.log(id)
+  }
   // useEffect(() => {
   //   setIsLoading(true);
   //   axios.get("https://rickandmortyapi.com/api/characterd")
@@ -47,7 +51,7 @@ const App = () => {
   return (
     <div className="wrapper">
       <Toaster />
-      <Navbar>
+      <Navbar favorites={favorites}>
         <Search query={query} setQuery={setQuery}/>
         <SearchResults numOfResult={characters.length}/>
         </Navbar>
@@ -58,7 +62,7 @@ const App = () => {
           characters={characters}
           isLoading={isLoading}
         />
-        <CharacterDetail selectedId={selectedId} />
+        <CharacterDetail selectedId={selectedId} addToFavorite={addToFavorite}/>
       </Main>
     </div>
   );

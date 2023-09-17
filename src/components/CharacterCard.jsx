@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { character,episodes } from "../data/characters";
 import EpisodeList from "./EpisodeList";
 import axios from "axios";
-const CharacterCard = ({ selectedId}) => {
+const CharacterCard = ({ selectedId,addToFavorite}) => {
   const [activeCharacter,setActiveCharacter] = useState(null)
   useEffect(()=>{
     async function fetchSingleCharacter(){
@@ -42,7 +42,7 @@ const CharacterCard = ({ selectedId}) => {
             <h4>{activeCharacter.location.name}</h4>
           </aside>
         </footer>
-        <DisplayBtn />
+        <DisplayBtn activeCharacter={activeCharacter} addToFavorite={addToFavorite}/>
       </div>
     </div>
      <EpisodeList episodes={episodes}/>
@@ -52,8 +52,8 @@ const CharacterCard = ({ selectedId}) => {
 
 export default CharacterCard;
 
-function DisplayBtn() {
-  return <button className="main-btn">Add to Favorite</button>;
+function DisplayBtn({activeCharacter,addToFavorite}) {
+  return <button onClick={()=>addToFavorite(activeCharacter.id)} className="main-btn">Add to Favorite</button>;
 }
 
 export function Status({ character }) {
