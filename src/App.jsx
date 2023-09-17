@@ -1,4 +1,4 @@
-import Navbar from "./components/Navbar";
+import Navbar, { Search, SearchResults } from "./components/Navbar";
 import "./App.css";
 import { useEffect, useState } from "react";
 import { character, episodes, allCharacters } from "./data/characters";
@@ -11,12 +11,13 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [activeCharacter, setActiveCharacter] = useState(character);
+  const [query,setQuery] = useState("")
   useEffect(() => {
     async function fetchData() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
-          "https://rickandmortyapi.com/api/charactefr"
+          `https://rickandmortyapi.com/api/character?name=${query}`
         );
         setCharacters(data.results);
       } catch (error) {
@@ -25,8 +26,12 @@ const App = () => {
         setIsLoading(false);
       }
     }
+    if(query.length < 3){
+      setCharacters([])
+      return;
+    }
     fetchData();
-  }, []);
+  }, [query]);
   const showHandler = (id) => {
     const activeCharacter = characters.filter((c) => {
       return c.id == id;
@@ -45,7 +50,10 @@ const App = () => {
   return (
     <div className="wrapper">
       <Toaster />
-      <Navbar numOfResult={characters.length} />
+      <Navbar>
+        <Search query={query} setQuery={setQuery}/>
+        <SearchResults numOfResult={characters.length}/>
+        </Navbar>
       <Main>
         <CharacterList
           onShowCharacter={showHandler}
