@@ -37,7 +37,9 @@ const App = () => {
     setSelectedId(prev => prev === id ? null : id)
   };
   const addToFavorite = (id)=>{
-    console.log(id)
+    const favoriteCharacter = characters.find((f)=> f.id === id)
+    setFavorites([...favorites,favoriteCharacter])
+    console.log(favorites)
   }
   // useEffect(() => {
   //   setIsLoading(true);
