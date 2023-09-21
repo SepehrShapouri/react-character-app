@@ -175,6 +175,8 @@ background-color: #123349;
   border-radius: 10px;
   align-self: flex-end;
   margin-top: 1rem;
+  max-height: 300px;
+  overflow: auto;
 }
 .list-title {
   color: var(--sec-text-color);

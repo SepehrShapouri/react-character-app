@@ -1,6 +1,7 @@
 import { ArrowDownCircleIcon } from "@heroicons/react/24/outline";
 import Episode from "./Episode";
-const EpisodeList = ({ episodes }) => {
+const EpisodeList = ({ episodes ,isLoading}) => {
+  if(isLoading)return <div>still loading</div>
   return (
     <div className="episode-list__component">
       <div className="list-title">
