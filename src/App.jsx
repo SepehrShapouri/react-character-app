@@ -38,9 +38,9 @@ const App = () => {
   };
   const addToFavorite = (id)=>{
     const favoriteCharacter = characters.find((f)=> f.id === id)
-    setFavorites([...favorites,favoriteCharacter])
-    console.log(favorites)
+    setFavorites(prev => [...prev,favoriteCharacter])
   }
+  console.log(favorites)
   // useEffect(() => {
   //   setIsLoading(true);
   //   axios.get("https://rickandmortyapi.com/api/characterd")
