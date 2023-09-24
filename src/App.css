@@ -5,6 +5,7 @@
   --sec-text-color: #cbd5e1;
   --nav-color: #475569;
 }
+
 @font-face {
   font-family: myFirstFont;
   src: url("/Users/sepiboi/Desktop/FRONTEND WEB DEV/REACT_UPDATE/04-react-movie-app/src/fonts/Roboto/Roboto-BlackItalic.ttf");
@@ -192,6 +193,9 @@ background-color: #123349;
 .episode-list {
   margin-top: 1rem;
 }
+.episode-list__component::-webkit-scrollbar{
+  display: none;
+}
 /* end of episode list */
 .episode {
   display: flex;
@@ -265,4 +269,9 @@ align-items: center;
 .loader{
   position: relative;align-self: center;
   margin-left: 7rem;
+}
+.added{
+  font-size: 0.8rem;
+  color: var(--sec-text-color);
+  margin-bottom: 1rem;
 }

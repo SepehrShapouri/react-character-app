@@ -10,9 +10,9 @@ import axios from "axios";
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [selectedId,setSelectedId] = useState()
-  const [favorites,setFavorites] = useState([])
-  const [query,setQuery] = useState("")
+  const [selectedId, setSelectedId] = useState();
+  const [favorites, setFavorites] = useState([]);
+  const [query, setQuery] = useState("");
   useEffect(() => {
     async function fetchData() {
       try {
@@ -27,44 +27,40 @@ const App = () => {
         setIsLoading(false);
       }
     }
-    if(query.length < 3){
-      setCharacters([])
+    if (query.length < 3) {
+      setCharacters([]);
       return;
     }
     fetchData();
   }, [query]);
   const onShowCharacter = (id) => {
-    setSelectedId(prev => prev === id ? null : id)
+    setSelectedId((prev) => (prev === id ? null : id));
   };
-  const addToFavorite = (id)=>{
-    const favoriteCharacter = characters.find((f)=> f.id === id)
-    setFavorites(prev => [...prev,favoriteCharacter])
-  }
-  console.log(favorites)
-  // useEffect(() => {
-  //   setIsLoading(true);
-  //   axios.get("https://rickandmortyapi.com/api/characterd")
-  //   .then(({data})=>{
-  //     setCharacters(data.results)
-  //   })
-  //   .catch((err)=>toast.error(err.response.data.error))
-  //   .finally(()=> setIsLoading(false))
-  // }, []);
+  const addToFavorite = (id) => {
+    const favoriteCharacter = characters.find((f) => f.id === id);
+    setFavorites((prev) => [...prev, favoriteCharacter]);
+  };
+  const isAddedToFavorite = favorites.map((fav) => fav.id).includes(selectedId);
+  console.log(isAddedToFavorite);
   return (
     <div className="wrapper">
       <Toaster />
       <Navbar favorites={favorites}>
-        <Search query={query} setQuery={setQuery}/>
-        <SearchResults numOfResult={characters.length}/>
-        </Navbar>
+        <Search query={query} setQuery={setQuery} />
+        <SearchResults numOfResult={characters.length} />
+      </Navbar>
       <Main>
         <CharacterList
-        selectedId={selectedId}
+          selectedId={selectedId}
           onShowCharacter={onShowCharacter}
           characters={characters}
           isLoading={isLoading}
         />
-        <CharacterDetail selectedId={selectedId} addToFavorite={addToFavorite}/>
+        <CharacterDetail
+          selectedId={selectedId}
+          addToFavorite={addToFavorite}
+          isAddedToFavorite={isAddedToFavorite}
+        />
       </Main>
     </div>
   );

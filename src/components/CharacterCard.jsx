@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { character, episodes } from "../data/characters";
 import CircularIndeterminate from "./Loader";
 import EpisodeList from "./EpisodeList";
 import axios from "axios";
-const CharacterCard = ({ selectedId, addToFavorite }) => {
+const CharacterCard = ({ selectedId, addToFavorite, isAddedToFavorite }) => {
   const [activeCharacter, setActiveCharacter] = useState(null);
   const [episodes, setEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +32,13 @@ const CharacterCard = ({ selectedId, addToFavorite }) => {
 
   if (!activeCharacter)
     return (
-      <div style={{ color: "var(--text-color)",display:"flex",justifyContent:"center" }}>
+      <div
+        style={{
+          color: "var(--text-color)",
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
         please select a character
       </div>
     );
@@ -68,10 +73,14 @@ const CharacterCard = ({ selectedId, addToFavorite }) => {
               <h4>{activeCharacter.location.name}</h4>
             </aside>
           </footer>
-          <DisplayBtn
-            activeCharacter={activeCharacter}
-            addToFavorite={addToFavorite}
-          />
+          {isAddedToFavorite ? (
+            <AddedToFavorite />
+          ) : (
+            <DisplayBtn
+              activeCharacter={activeCharacter}
+              addToFavorite={addToFavorite}
+            />
+          )}
         </div>
       </div>
       <EpisodeList episodes={episodes} isLoading={isLoading} />
@@ -91,7 +100,9 @@ function DisplayBtn({ activeCharacter, addToFavorite }) {
     </button>
   );
 }
-
+function AddedToFavorite() {
+  return <p className="added">Already added to favorite!</p>;
+}
 export function Status({ character }) {
   return (
     <>
