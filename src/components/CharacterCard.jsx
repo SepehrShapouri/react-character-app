@@ -7,12 +7,14 @@ const CharacterCard = ({ selectedId, addToFavorite, isAddedToFavorite }) => {
   const [episodes, setEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
+    const controller = new AbortController()
+    const signal = controller.signal
     async function fetchSingleCharacter() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
           `https://rickandmortyapi.com/api/character/${selectedId}`
-        );
+        ,{signal});
         setActiveCharacter(data);
         const episodeId = data.episode.map((e) => e.split("/").at(-1));
         const { data: episodeData } = await axios.get(
@@ -28,6 +30,9 @@ const CharacterCard = ({ selectedId, addToFavorite, isAddedToFavorite }) => {
     }
     if (selectedId) fetchSingleCharacter();
     if (!selectedId) setActiveCharacter(null);
+    return ()=>{
+      controller.abort()
+    }
   }, [selectedId]);
 
   if (!activeCharacter)
