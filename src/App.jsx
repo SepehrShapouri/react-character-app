@@ -14,9 +14,11 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedId, setSelectedId] = useState();
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState(
+    () => JSON.parse(localStorage.getItem("FAVORITES")) || []
+  );
   const [query, setQuery] = useState("");
-  const [open,setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     async function fetchData() {
       try {
@@ -44,13 +46,21 @@ const App = () => {
     const favoriteCharacter = characters.find((f) => f.id === id);
     setFavorites((prev) => [...prev, favoriteCharacter]);
   };
+  const onDeleteFavorite = (id) => {
+    setFavorites((prev) => prev.filter((f) => f.id != id));
+  };
   const isAddedToFavorite = favorites.map((fav) => fav.id).includes(selectedId);
-  console.log(isAddedToFavorite);
+
+  useEffect(() => {
+    localStorage.setItem("FAVORITES", JSON.stringify(favorites));
+  }, [favorites]);
   return (
     <div className="wrapper">
       <Toaster />
       <Modal title="Favorite characters" open={open} setOpen={setOpen}>
-        {favorites.map((item)=> <FavoriteCharacter item={item}/>)}
+        {favorites.map((item) => (
+          <FavoriteCharacter onDeleteFavorite={onDeleteFavorite} item={item} />
+        ))}
       </Modal>
       <Navbar favorites={favorites} setOpen={setOpen}>
         <Search query={query} setQuery={setQuery} />

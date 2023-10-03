@@ -1,7 +1,7 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { Status } from "./CharacterCard";
 
-const FavoriteCharacter = ({item}) => {
+const FavoriteCharacter = ({item,onDeleteFavorite}) => {
     return ( 
                 <div className="character-card-sum">
       <img src={item.image} alt="" className="character-sum__image" />
@@ -14,7 +14,7 @@ const FavoriteCharacter = ({item}) => {
           <p className="character-type">{item.species}</p>
         </span>
       </div>
-            <TrashIcon className="icon trash"/>
+            <TrashIcon className="icon trash" onClick={()=>onDeleteFavorite(item.id)}/>
     </div>
      );
 }
