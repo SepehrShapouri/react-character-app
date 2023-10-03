@@ -7,12 +7,16 @@ import CharacterList from "./components/CharacterList";
 import CircularIndeterminate from "./components/Loader";
 import { Toaster, toast } from "react-hot-toast";
 import axios from "axios";
+import Modal from "./components/Modal";
+import favoriteCharacter from "./components/FavoriteCharacter";
+import FavoriteCharacter from "./components/FavoriteCharacter";
 const App = () => {
   const [characters, setCharacters] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedId, setSelectedId] = useState();
   const [favorites, setFavorites] = useState([]);
   const [query, setQuery] = useState("");
+  const [open,setOpen] = useState(false)
   useEffect(() => {
     async function fetchData() {
       try {
@@ -45,7 +49,10 @@ const App = () => {
   return (
     <div className="wrapper">
       <Toaster />
-      <Navbar favorites={favorites}>
+      <Modal title="Favorite characters" open={open} setOpen={setOpen}>
+        {favorites.map((item)=> <FavoriteCharacter item={item}/>)}
+      </Modal>
+      <Navbar favorites={favorites} setOpen={setOpen}>
         <Search query={query} setQuery={setQuery} />
         <SearchResults numOfResult={characters.length} />
       </Navbar>

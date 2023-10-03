@@ -1,12 +1,12 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { Children } from "react";
-const Navbar = ({children,favorites}) => {
+const Navbar = ({children,favorites,setOpen}) => {
   return (
     <header className="app-header">
       <aside className="app-header__logo">Rick and Morty!</aside>
       {children}
       <span className="app-header__favourites">
-        <HeartIcon className="app-header__favourites-icon" />
+        <HeartIcon className="app-header__favourites-icon" onClick={()=>setOpen(is=>!is)}/>
         <span className="app-header__favourites-count">{favorites.length}</span>
       </span>
     </header>

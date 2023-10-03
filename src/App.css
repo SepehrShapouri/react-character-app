@@ -4,8 +4,20 @@
   --text-color: #fff;
   --sec-text-color: #cbd5e1;
   --nav-color: #475569;
+  --slate-900: #0f172a;
+  --slate-800: #1e293b;
+  --slate-700: #334155;
+  --slate-600: #475569;
+  --slate-500: rgb(100, 116, 139);
+  --slate-400: #94a3b8;
+  --slate-300: #cbd5e1;
+  --slate-200: #e2e8f0;
+  --slate-100: #f1f5f9;
+  --slate-50: #f8fafc;
+  --rose-600: #e11d48;
+  --rose-500: #f43f5e;
+  --green-600: #22c55e;
 }
-
 @font-face {
   font-family: myFirstFont;
   src: url("/Users/sepiboi/Desktop/FRONTEND WEB DEV/REACT_UPDATE/04-react-movie-app/src/fonts/Roboto/Roboto-BlackItalic.ttf");
@@ -186,6 +198,8 @@ background-color: #123349;
   display: flex;
   justify-content: space-between;
   opacity: 0.6;
+  position: relative;
+  z-index: 1;
 }
 .episode-sort__icon {
   width: 20px;
@@ -274,4 +288,58 @@ align-items: center;
   font-size: 0.8rem;
   color: var(--sec-text-color);
   margin-bottom: 1rem;
+}
+.modal {
+  width: 98%;
+  min-height: 250px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--bg-color);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 50px var(--slate-600);
+  z-index: 2;
+}
+
+.modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--slate-600);
+}
+
+.icon {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+.modal__header .close {
+  color: var(--rose-500);
+}
+.modal__header button{
+  all: unset;
+}
+.modal__header .title {
+  color: var(--slate-200);
+}
+
+@media (min-width: 768px) {
+  .modal {
+    max-width: 30rem;
+  }
+}
+
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(79, 95, 112, 0.7);
+}
+.trash{
+  color: var(--rose-500);
 }
