@@ -26,3 +26,4 @@ dist-ssr
 *.cjs
 vite.config.js
 .next
+.vercel

@@ -244,6 +244,9 @@ background-color: #123349;
   .app-header__search{
    width: 100px;
   }
+   .app-header__found-result{
+margin-left: 2rem;
+   }
   .main {
     flex-direction: column;
   }
