@@ -10,35 +10,14 @@ import axios from "axios";
 import Modal from "./components/Modal";
 import favoriteCharacter from "./components/FavoriteCharacter";
 import FavoriteCharacter from "./components/FavoriteCharacter";
+import useCharacters from "./hooks/useCharacters";
+import useLocalStorage from "./hooks/useLocalStorage";
 const App = () => {
-  const [characters, setCharacters] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const [selectedId, setSelectedId] = useState();
-  const [favorites, setFavorites] = useState(
-    () => JSON.parse(localStorage.getItem("FAVORITES")) || []
-  );
   const [query, setQuery] = useState("");
+  const { isLoading, characters } = useCharacters(query);
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        setIsLoading(true);
-        const { data } = await axios.get(
-          `https://rickandmortyapi.com/api/character?name=${query}`
-        );
-        setCharacters(data.results);
-      } catch (error) {
-        toast.error(error.response.data.error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-    if (query.length < 3) {
-      setCharacters([]);
-      return;
-    }
-    fetchData();
-  }, [query]);
+  const [favorites, setFavorites] = useLocalStorage("FAVORITES",[]);
   const onShowCharacter = (id) => {
     setSelectedId((prev) => (prev === id ? null : id));
   };
@@ -51,9 +30,6 @@ const App = () => {
   };
   const isAddedToFavorite = favorites.map((fav) => fav.id).includes(selectedId);
 
-  useEffect(() => {
-    localStorage.setItem("FAVORITES", JSON.stringify(favorites));
-  }, [favorites]);
   return (
     <div className="wrapper">
       <Toaster />
