@@ -1,5 +1,9 @@
 import { XCircleIcon } from "@heroicons/react/24/outline";
-const Modal = ({ title, open, setOpen, children }) => {
+import { useOpen } from "../context/OpenContext";
+import { useFavorites } from "../context/FavoritesContext";
+const Modal = ({ title }) => {
+  const { favorites } = useFavorites();
+  const { open, setOpen } = useOpen();
   if (!open) return null;
   return (
     <div>
@@ -11,7 +15,9 @@ const Modal = ({ title, open, setOpen, children }) => {
             <XCircleIcon className="icon close" />
           </button>
         </div>
-        {children}
+        {favorites.map((item) => (
+          <FavoriteCharacter item={item} />
+        ))}
       </div>
     </div>
   );

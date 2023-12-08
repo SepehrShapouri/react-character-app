@@ -1,10 +1,10 @@
 import CharacterCard from "./CharacterCard";
 import EpisodeList from "./EpisodeList";
 import { character, episodes } from "../data/characters";
-const CharacterDetail = ({selectedId,addToFavorite,isAddedToFavorite}) => {
+const CharacterDetail = () => {
   return (
     <div className="character-detail">
-    <CharacterCard isAddedToFavorite={isAddedToFavorite} selectedId={selectedId} addToFavorite={addToFavorite}/>
+      <CharacterCard />
     </div>
   );
 };
