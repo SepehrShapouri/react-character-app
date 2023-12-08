@@ -1,6 +1,9 @@
 import { HeartIcon } from "@heroicons/react/24/outline";
-import { Children } from "react";
-const Navbar = ({children,favorites,setOpen}) => {
+import { useOpen } from "../context/OpenContext";
+import { useFavorites } from "../context/FavoritesContext";
+const Navbar = ({children}) => {
+  const {favorites} = useFavorites()
+  const {setOpen} = useOpen()
   return (
     <header className="app-header">
       <aside className="app-header__logo">Rick and Morty!</aside>

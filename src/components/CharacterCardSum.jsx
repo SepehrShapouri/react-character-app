@@ -1,7 +1,14 @@
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { Status } from "./CharacterCard";
+import { useId } from "react";
+import { useSelectedId } from "../context/SelectedIdContext";
 
-const CharacterCardSum = ({ selectedId,item ,onShowCharacter}) => {
+const CharacterCardSum = ({ item }) => {
+  const { selectedId, setSelectedId } = useSelectedId();
+  console.log(selectedId);
+  const onShowCharacter = (id) => {
+    setSelectedId((prev) => (prev === id ? null : id));
+  };
   return (
     <div className="character-card-sum">
       <img src={item.image} alt="" className="character-sum__image" />
@@ -14,7 +21,9 @@ const CharacterCardSum = ({ selectedId,item ,onShowCharacter}) => {
           <p className="character-type">{item.species}</p>
         </span>
       </div>
-      <button className="eye" onClick={()=>onShowCharacter(item.id)}>{selectedId === item.id ? <EyeSlashIcon/> : <EyeIcon/>}</button>
+      <button className="eye" onClick={() => onShowCharacter(item.id)}>
+        {selectedId === item.id ? <EyeSlashIcon /> : <EyeIcon />}
+      </button>
     </div>
   );
 };
