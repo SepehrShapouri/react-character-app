@@ -1,9 +1,14 @@
 import { TrashIcon } from "@heroicons/react/24/outline";
 import { Status } from "./CharacterCard";
+import { useFavorites } from "../context/FavoritesContext";
 
-const FavoriteCharacter = ({item,onDeleteFavorite}) => {
-    return ( 
-                <div className="character-card-sum">
+const FavoriteCharacter = ({ item }) => {
+  const {setFavorites} = useFavorites()
+  const onDeleteFavorite = (id) => {
+    setFavorites((prev) => prev.filter((f) => f.id != id));
+  };
+  return (
+    <div className="character-card-sum">
       <img src={item.image} alt="" className="character-sum__image" />
       <div className="character-sum__detail">
         <h4>
@@ -14,9 +19,12 @@ const FavoriteCharacter = ({item,onDeleteFavorite}) => {
           <p className="character-type">{item.species}</p>
         </span>
       </div>
-            <TrashIcon className="icon trash" onClick={()=>onDeleteFavorite(item.id)}/>
+      <TrashIcon
+        className="icon trash"
+        onClick={() => onDeleteFavorite(item.id)}
+      />
     </div>
-     );
-}
- 
+  );
+};
+
 export default FavoriteCharacter;

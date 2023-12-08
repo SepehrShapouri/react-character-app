@@ -1,20 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import CircularIndeterminate from "./Loader";
 import EpisodeList from "./EpisodeList";
 import axios from "axios";
-const CharacterCard = ({ selectedId, addToFavorite, isAddedToFavorite }) => {
+import { useSelectedId } from "../context/SelectedIdContext";
+import { useFavorites } from "../context/FavoritesContext";
+const CharacterCard = () => {
+  const { favorites } = useFavorites();
+  const { selectedId } = useSelectedId();
   const [activeCharacter, setActiveCharacter] = useState(null);
   const [episodes, setEpisodes] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const isAddedToFavorite = favorites.map((fav) => fav.id).includes(selectedId);
   useEffect(() => {
-    const controller = new AbortController()
-    const signal = controller.signal
+    const controller = new AbortController();
+    const signal = controller.signal;
     async function fetchSingleCharacter() {
       try {
         setIsLoading(true);
         const { data } = await axios.get(
-          `https://rickandmortyapi.com/api/character/${selectedId}`
-        ,{signal});
+          `https://rickandmortyapi.com/api/character/${selectedId}`,
+          { signal }
+        );
         setActiveCharacter(data);
         const episodeId = data.episode.map((e) => e.split("/").at(-1));
         const { data: episodeData } = await axios.get(
@@ -30,9 +36,9 @@ const CharacterCard = ({ selectedId, addToFavorite, isAddedToFavorite }) => {
     }
     if (selectedId) fetchSingleCharacter();
     if (!selectedId) setActiveCharacter(null);
-    return ()=>{
-      controller.abort()
-    }
+    return () => {
+      controller.abort();
+    };
   }, [selectedId]);
 
   if (!activeCharacter)
@@ -81,10 +87,7 @@ const CharacterCard = ({ selectedId, addToFavorite, isAddedToFavorite }) => {
           {isAddedToFavorite ? (
             <AddedToFavorite />
           ) : (
-            <DisplayBtn
-              activeCharacter={activeCharacter}
-              addToFavorite={addToFavorite}
-            />
+            <DisplayBtn activeCharacter={activeCharacter} />
           )}
         </div>
       </div>
@@ -95,7 +98,12 @@ const CharacterCard = ({ selectedId, addToFavorite, isAddedToFavorite }) => {
 
 export default CharacterCard;
 
-function DisplayBtn({ activeCharacter, addToFavorite }) {
+function DisplayBtn({ activeCharacter }) {
+  const { setFavorites } = useFavorites();
+  const addToFavorite = (id) => {
+    const favoriteCharacter = characters.find((f) => f.id === id);
+    setFavorites((prev) => [...prev, favoriteCharacter]);
+  };
   return (
     <button
       onClick={() => addToFavorite(activeCharacter.id)}
